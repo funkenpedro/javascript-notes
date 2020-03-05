@@ -14,5 +14,12 @@ extend (Circle, Shape)
 Circle.prototype.duplicate = function(){
 console.log('circleDuplicate')
 }
+
+function Square(){
+}
+extend(Square, Shape);
+Square.prototype.duplicate = function(){  // same name but different implementation - polymorphism
+	console.log('duplicate square' );}
+	
 const c = new Circle()
 </script>
