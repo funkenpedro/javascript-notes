@@ -1,0 +1,16 @@
+<script>
+function HtmlElement(){this.click = function(){console.log('clicked')}}
+HtmlElement.prototype.focus = function(){console.log('focused')}
+
+function HtmlSelectElement(items = []){
+				this.items = items;
+				this.additem = function(item){this.items.push(item)};
+				this.removeItem = function(item){this.items.splice(this.items.indexOf(item), 1)};}
+
+HtmlSelectElement.prototype = new HtmlElement();
+//Object.create(HtmlElement.prototype) shouldnt be used because it wont include the instancemethod click;
+HtmlSelectElement.prototype.constructor = HtmlSelectElement;
+
+he = new HtmlElement();
+hse = new HtmlSelectElement()
+</script>
