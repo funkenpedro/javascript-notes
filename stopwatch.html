@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<style>
+</style>
+<body>
+<script>
+
+function Stopwatch(){
+	let running, endtime, starttime, duration = 0;
+	
+	this.stop = function()
+	{
+		if (running)
+		{endtime = new Date();
+		console.log(endtime);
+		running = false;
+		const seconds = (endtime.getTime() - starttime.getTime());
+		
+		duration += seconds;
+		
+		}
+		
+		else {console.log('stopwatch is not started');}
+		
+	};
+	this.reset = function()
+	{
+		duration = 0;
+		starttime = 0;
+		endtime = 0; 
+		running = false;
+		
+	};
+	Object.defineProperty(this, 'duration', {
+    get: function() { return duration; },
+    
+	});
+	Object.defineProperty(this, 'running',  {
+    get: function() { return running; },
+	set: function(value) {running = value}
+    
+	});
+	Object.defineProperty(this, 'starttime',  {
+    get: function() { return starttime; },
+	set: function(value) {starttime = value}
+    
+	});
+	
+
+}
+Stopwatch.prototype.start = function() {if (!this.running)
+			{this.running = true;
+			this.starttime = new Date();
+			console.log('hello');}
+		else {console.log('stopwatch is already running');}
+		};
+
+
+</script>
+</body>
+</html>

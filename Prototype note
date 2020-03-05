@@ -1,0 +1,15 @@
+Prototypical Inheritance
+
+
+new Circle.prototype.constructor(1)
+is the same as
+new Circle(1)
+
+when you inherit from another class using:
+
+Circle.prototype = Object.create(Shape.prototype);
+new Circle.prototype.constructor() will create a new shape.
+
+So also add:
+
+Circle.prototype.constructor = Circle;

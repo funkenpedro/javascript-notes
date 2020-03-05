@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<style>
+</style>
+<body>
+<script>
+
+function Circle(radius){
+	let defaultLocation = {x:1, y:0};
+	this.radius = radius;
+	Object.defineProperty(this, 'defaultLocation', {
+		get: function(){
+		return defaultLocation;},
+		set: function(value){
+			if(!value.x || !value.y)
+				throw new Error('Invalid location');
+			defaultLocation = value;
+		}
+		});
+
+}
+myCircle = new Circle(1);
+bumface = smoothie();
+function smoothie()
+	{return Circle.call({}, 1);}
+
+
+</script>
+</body>
+</html>
