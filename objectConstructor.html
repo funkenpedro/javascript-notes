@@ -1,0 +1,26 @@
+
+<html>
+<!--
+every javascipt object has a constructor
+
+let x= {};
+is interpreted as 
+let x = new Object();
+new String(); is a constructor to create a string
+but we typically use literals
+-->
+
+<script>
+
+
+function Circle(radius){
+    this.radius = radius;
+    this.draw = function(){
+    console.log("Constructordraw");
+       }
+}
+const circle = new Circle(1);
+circle.draw();
+
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<!--
+Functions are objects
+investigate their properties 
+by typing the Function name
+-->
+
+<script>
+
+function createCircle(radius) { 
+   return {
+      radius,
+	  draw: function(){console.log('draw');}
+   } ;
+} 
+
+function Circle(radius){this.radius = radius;
+					this.draw = function(){console.log('drawing');}
+					let defaultLocation = {x:1, y:1};
+					
+					Object.defineProperty(this, 'defaultLocation', {
+							get: function() { return defaultLocation; },
+							set: function(value) { defaultLocation = value; }
+							});
+					
+					
+}
+
+c = new Circle(1);
+c.draw();
+</script>
+
+</body>
+</html>
+
+

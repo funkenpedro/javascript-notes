@@ -1,0 +1,54 @@
+
+
+
+<html>
+<script>
+let person = {name: 'Pedro'};
+console.log(Object.keys(person));
+
+/* 
+	
+*/
+//this will show the three property values of toString
+
+let objectBase = Object.getPrototypeOf(person);   //get prototype of object
+let descriptor = Object.getOwnPropertyDescriptor(objectBase, 'toString');
+console.log(descriptor);
+// to set the properties use:
+Object.defineProperty(person, 'name', {
+	writable: false,   // cant change the value\  read only
+	enumerable:false,  //wont show up when listed with keys
+	configurable: false  // you can't delete the property -- delete person.name
+	});
+
+
+//to change the functions of  a literal object's prototype use: (for toString function)
+// when you make a literal object you are using the base object constructor
+// this literal.__proto__ is the same as Object.prototype
+let x = {name: 'name'};
+x.__proto__.toString = function xtoString(){console.log(x.name)}
+
+//to change the functions of constructors prototype use:
+function Circle(radius){this.radius = radius;}
+Circle.prototype.toString = function circleToString(){console.log(this.radius)};
+Circle.prototype.draw = function draw(){console.log('drawing')};
+
+c = new Circle(1);
+console.log(c.__proto__ === Circle.prototype);
+
+
+// you can call functions in the constructor from the prototype and vice versa:
+
+function Square(size){
+this.size = size;
+
+this.rotate = function(){this.move(); console.log('rotate');}
+this.rotates = function(){console.log('rotattings')}
+}
+Square.prototype.move = function(){this.rotate; this.rotates(); console.log('move');}
+
+
+</script>
+
+
+</html>
