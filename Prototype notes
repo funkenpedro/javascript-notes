@@ -1,0 +1,60 @@
+Use prototypes to reduce memory usage when many instances are created of an object
+
+so instead of creating a bunch of circles with:
+
+function Circle(radius){
+	this.radius = radius;
+	function draw(){Console.log('draw');}
+}
+
+
+
+Create a smaller Circle class and use a prototype (which only has one instance among several objects)
+
+function Circle(radius){
+	this.radius = radius;
+}
+Circle.prototype.draw = function(){
+	console.log('draw');
+}
+
+
+
+you can also overide prototype members:
+
+Circle.prototyp.toString = function(){
+return 'circle with radius :' this.radius;
+
+}
+
+
+
+Iterating over prototype and instance members:
+Object.keys(myCircle); returns instance members only
+
+for (let key in myCircle).. returns prototype and instance methods
+myCircle.hasOwnProperty('radius');  returns true, would return false for prototype method
+
+
+Prototypical Inheritance
+
+
+new Circle.prototype.constructor(1)
+is the same as
+new Circle(1)
+
+when you inherit from another class using:
+
+Circle.prototype = Object.create(Shape.prototype);
+new Circle.prototype.constructor() will create a new shape.
+So also add:
+
+Circle.prototype.constructor = Circle;
+
+Script looks like this:
+
+function Shape(){
+}
+Shape.prototype.duplicate = function(){
+console.log('duplicate');
+}

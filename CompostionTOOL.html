@@ -1,0 +1,57 @@
+To use composition instead of inheritance
+build objects that will be properties and methods of the target object
+and then include them or mix them into the target object.
+
+So for instance build objects for an animal class
+
+Eat
+Walk
+Swim
+Sleep
+
+Build the animals
+Fish 
+Dog 
+Human
+
+And add the method objects to the animals
+
+<script>
+const canEat = {
+eat: function(){this.hunger--;
+	console.log('eating');}
+	
+	};
+const canWalk = {walk: function(){console.log('walking')}};
+
+const person = Object.assign({}, canEat, canWalk);
+console.log(person)
+
+</script>
+
+--------------------------------------------------------
+can do this in a constructor
+<script>
+const canEat = {
+eat: function(){this.hunger--;
+	console.log('eating');}
+	
+	};
+const canWalk = {walk: function(){console.log('walking')}};
+function Person(){
+}
+Object.assign(Person.prototype, canEat, canWalk);
+
+</script>
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+a function to build compostions called mixin
+<script>
+function mixin(target, ...mixin) //"..." is the rest argument creates an array
+{ Object.assign(target, ...sources);} //"..." is the spread operator - spreads the array
+
+//then call the composition function
+mixin(Person.prototype, canEat, canWalk)
+</script>

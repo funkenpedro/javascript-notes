@@ -1,0 +1,204 @@
+
+This page demonstrates development of inheritance tool extend and composition tool mixin
+
+
+<script>
+function Shape(){}
+Shape.prototype.duplicate = function(){  // this is Shape Base
+	console.log('duplicate');
+}
+function Circle(radius){
+this.radius = radius;
+}
+
+Circle.prototype = Object.Create(Shape.prototype);
+Circle.prototype.constructor = Circle;
+Circle.prototype.draw = function(){  //this is circleBase
+console.log('draw');
+}
+const s = Shape();
+const c = Circle(1);
+
+</script>
+
+Circle.prototype = Object.create(Object.prototype)  /// this is what happens by default when you create an object based on object base
+Circle.prototype = Object.Create(Shape.prototype) // do this to create the object on another base instead
+
+
+new Circle.prototype.constructor(1) is equivalent to new Circle(1)
+when you inherit from another class using:
+
+Circle.prototype = Object.create(Shape.prototype);
+
+new Circle.prototype.constructor() will create a new shape.
+
+So also add:
+
+Circle.prototype.constructor = Circle;
+In short, when you reset the prototype, also reset the constructor
+
+
+-------------------------------------------------------------------------
+
+When you call a constructor function without "new" all the "this" references in the constructor 
+refer to the window object , when you use "new"  it creates an empty object that "this" refers to.
+To use the Circle as a Child of Shape and include Shape's properties call it like so in the Circle 
+Constructor: Shape.call(this, color);
+If you look at the call function, the first argument is thisArg
+
+<script>
+function Shape(color){this.color = color;}  //add color to Shape constructor 
+Shape.prototype.duplicate = function(){  // this is Shape Base
+	console.log('duplicate');
+}
+function Circle(radius, color){
+Shape.call(this, color);
+this.radius = radius;
+}
+
+Circle.prototype = Object.Create(Shape.prototype);
+Circle.prototype.constructor = Circle;
+Circle.prototype.draw = function(){  //this is circleBase
+console.log('draw');
+}
+const s = Shape();
+const c = Circle(1);
+
+</script>
+
+------------------------------------------------------------------------------------------
+more function inheritance - adding a square:
+Intermediate Function inheritence
+<script>
+function Shape(color){this.color = color;}  //add color to Shape constructor 
+Shape.prototype.duplicate = function(){  // this is Shape Base
+	console.log('duplicate');
+}
+function Circle(radius, color){
+Shape.call(this, color);
+this.radius = radius;
+}
+
+Circle.prototype = Object.Create(Shape.prototype);
+Circle.prototype.constructor = Circle;
+Circle.prototype.draw = function(){  //this is circleBase
+console.log('draw');
+}
+const s = Shape();
+const c = Circle(1);
+
+function Square(size){
+
+this.size = size;
+}
+
+Square.prototype = Object.Create(Shape.prototype);  // this is noisy so we refactor into a function
+Square.prototype.constructor = Square;				// noisy because repeated
+
+</script>
+function extend(Child, Parent)
+{Child.prototype = Object.Create(Parent.prototype);
+Child.prototype.constructor = Child;}
+
+and after the square and circle definitions add:
+extend(Circle, Shape)
+// extend may have to  be declared at the top?
+
+
+----------------------------------------------------------------------------------------------------------------
+
+overriding methods in a parent class
+
+<script>
+function Shape(color){this.color = color;}  //add color to Shape constructor 
+Shape.prototype.duplicate = function(){  // this is Shape Base
+	console.log('duplicate');
+}
+
+function extend(Child, Parent){
+Child.prototype = Object.Create(parent.prototype);
+Child.prototype.constructor = Child
+}
+function Circle(radius, color){
+Shape.call(this, color);
+this.radius = radius;
+}
+
+extend(Circle, Shape); // here we are overwriting the prototype so if we want to overwrite the 
+						// parents methods then we have to do it underneath (after)
+
+
+
+Circle.prototype.draw = function(){  //this is circleBase
+console.log('draw');
+}
+
+Circle.prototype.duplicate = function(){   //overwrites  the parent function
+	
+	console.log('duplicate circle');
+	
+	Shape.prototype.duplicate.call(this); // you can still use the parent function like this
+
+}
+const s = Shape();
+const c = Circle(1);
+
+
+
+</script>
+
+
+=============================================================================================
+Polymorphism
+
+<script>
+function Shape(color){this.color = color;}  //add color to Shape constructor 
+Shape.prototype.duplicate = function(){  // this is Shape Base
+	console.log('duplicate');
+}
+
+function extend(Child, Parent){
+Child.prototype = Object.Create(parent.prototype);
+Child.prototype.constructor = Child
+}
+function Circle(radius, color){
+Shape.call(this, color);
+this.radius = radius;
+}
+
+extend(Circle, Shape); /
+
+
+
+Circle.prototype.draw = function(){ 
+console.log('draw');
+}
+
+Circle.prototype.duplicate = function(){   
+	
+	console.log('duplicate circle');
+	
+	Shape.prototype.duplicate.call(this); 
+}
+function Square()
+{}
+extend(Square, Shape);                       // creating a square to demonstrate polymorphism
+Square.prototype.duplicate = function(){      // methods with same names but different behaviours
+console.log('dupllicate square');}
+
+so if you have an array of shape objects:
+for(let shape of shapes)
+	shape.duplicate(); // lets you run different methods on an array of objects
+
+</script>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Only use inheritance for one or two levels
+
+
+
+
+
+
+
