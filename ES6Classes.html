@@ -1,0 +1,24 @@
+<script>
+//ES6 Classes are syntactic sugar for the models of building objects with functions
+//and prototypes to acheive memory efficiency
+//so where
+
+function Circle(radius){
+	self.radius = radius
+	self.move = function(){}		}
+Circle.prototype.draw = function(){console.log('draw');}
+
+//can be replaced with
+class Circle{
+	constructor(radius){
+		this.radius = radius;
+		this.move = function(){}
+		}
+	draw(){
+		console.log('draw')
+	}
+}
+
+circle = new Circle(1)
+//Babeljs.io will complile modern code for older browsers
+</script>

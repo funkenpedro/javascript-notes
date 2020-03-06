@@ -1,0 +1,32 @@
+
+<script>
+class Circle{
+	constructor(radius){
+		this.radius = radius;
+		this.move = function(){}
+		}
+	//instance method which acts on the "circle" (instantiated below)
+	draw(){						
+	console.log('draw')
+	}
+	//Static Method - operates on the class not the instances
+	static parse(str){
+	const radius = JSON.parse(str).radius
+	return new Circle(radius)
+	}
+}
+const circle = new Circle(1)
+const circle2 = Circle.parse('{"radius":1}')
+console.log(circle)
+console.log(circle2)
+
+
+//Another example of static
+
+class myMath {
+	static abs(value){
+	return null;}
+}
+
+myMath.abs(myValue)
+</script>
