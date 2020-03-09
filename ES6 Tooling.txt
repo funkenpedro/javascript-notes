@@ -1,0 +1,41 @@
+Create bundles of modules and translate them to ES5 with Babel and 
+Webpack.
+
+Steps -
+Create a folder for the project
+run npm init --yes
+this creates package.json
+which includes info about the project
+
+install babel:
+npm i babel-cli@6.26 babel-core@6.26.0 babel-preset-env@1.6.1 --save-dev
+
+in vs code
+add the index.js file
+then use babel to convert the file
+
+in package.json in scripts add
+"babel": "babel --presets env index.js -o build/index.js"
+in npm now if you type 
+npm run babel it will run the build.
+++++++++++++++++++++++++++++
+if you have a lot of files in your project use webpack to build them
+WEBPACK
++++++++++++++++++
+npm i -g webpack-cli@2.0.14   //this installs webpack globally
+
+in the projects folder enter
+
+webpack-cli init
+this asks you questions, it will also install webpack for you
+
+then run npm init --yes to create the package.json
+add a new script called "build":"webpack"
+
+then in the terminal enter:
+npm run build
+then in the index.html file change the source to the 
+bundle name created.
+
+if you add -w to build command it will watch if you 
+chang the source file and webpack will rerun the build for you

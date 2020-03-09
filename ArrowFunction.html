@@ -5,3 +5,27 @@ is the same as:
 const renderItem = item => `<option>${item}</option>`
 
 </script>
+
+Arrow functions also solve a problem where this doesnt bind to functions
+that are within another function
+<script>
+const person ={
+	talk(){
+	setTimeout(function(){console.log("this", this))}, 1000
+	}
+}
+person.talk // will return the window object instead of the instance
+</script>
+
+
+
+<script>//arrow functions inherit the this keyword
+const person ={
+talk()
+	{setTimeout(()=>{console.log("this", this);},1000);}
+};
+person.talk(); //will return the person instance
+</script>
+
+<script>
+</script>

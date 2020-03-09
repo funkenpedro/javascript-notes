@@ -1,0 +1,11 @@
+
+<script>
+const colors = ['red', 'green', 'blue']
+colors.map(function(color){return '<li>'+ color + '</li>'}) // this returns a new array
+
+
+use an arrow function instead
+
+const items = colors.map(color => `<li>${color}</li>) // the ${} renders dynamically
+console.log(items)
+</script>
