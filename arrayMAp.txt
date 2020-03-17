@@ -1,0 +1,6 @@
+to render a list of items use the arraymap method
+
+const colors = ['red', 'green', 'blue']
+const items = colors.map(color => `<li>${color}</li>`);
+`` are back ticks that enclose template literals.
+to render something dynamically use ${} within a template literal 

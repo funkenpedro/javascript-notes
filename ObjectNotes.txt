@@ -1,0 +1,12 @@
+Objects are collections of key value pairs
+
+const person = {name:"Pedro"
+				wak(){}
+				talk = function(){}};
+				
+a function in an object is called a method
+
+can be accessed with . notation or bracket notation
+use bracket notation for dynamic selection.
+myFunc = 'wak'
+person[myFunc]

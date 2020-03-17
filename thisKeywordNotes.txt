@@ -1,0 +1,44 @@
+the value of this is determined by how a value is called
+
+person.walk()
+
+if you call a function as a standard method or without reference to an 
+object this returns a reference to the Window object
+
+const person = {
+	walk(){console.log(this);}
+}
+const walk = person.walk;
+walk(); -- returns undefined because strict mode is enabled by default in react
+
+
+Functions are objects.
+The bind method will bind a function to an object.
+the first argument to pass to the bind method is thisArg
+const walk = person.walk.bind(person);
+will assign the person object to the walk function
+then this will refer to the person object.
+
+walk() would then return the person object
+
+Arrow functions can be used to avoid this problem
+
+the arrow gets rid of the function keyword
+so instead of:
+	function(number) {return number*number}
+	number => number*number
+	read as number goes to number * number
+
+Arrow functions do not rebind this
+so if you are having problems with a standalone function 
+that does not bind to its object and returns the window object
+use an arrow.
+
+alternatively, outside of the call back function you could assign this
+to another variable name and use it instead.
+
+The arrow function inherits the this object, it doesnt get reset to the window.
+
+
+
+const person = {talk(){console.log(this);}};

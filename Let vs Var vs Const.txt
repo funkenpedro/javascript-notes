@@ -1,0 +1,8 @@
+var has scope problems
+it is accessible outside of its block
+available anywhere in the function
+
+let and const are available only in their block
+
+const cannot be reassigned to.
+let can be reassigned to

@@ -1,0 +1,11 @@
+this is a notation to simplify referencing the members of an object
+
+const address = {
+
+	street: '',
+	city: ''}
+
+const {street}  = address;
+if you want to rename it
+const {street:st} = address;
+will get street from address

@@ -9,4 +9,26 @@ like :
 export default class Teacher {}
 would be imported with:
 
-import Teacher from "./teacher"
+import {Teacher} from "./teacher"
+
+
+from a class that has function promote() for example:
+
+class Teacher(){
+	export function promote|(){}
+}
+
+
+in another file you can import it with
+
+import {promote} from './teacher'
+
+
+curly braces are used to import a named export
+if you use the default keyword to export,
+you don't have to use the curly braces
+
+
+you can import both types in the same line
+
+import Teacher ,{promote} from './teacher'
